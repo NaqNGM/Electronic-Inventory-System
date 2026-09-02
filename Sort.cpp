@@ -188,4 +188,5 @@ void sortItem(InventoryItem arr[], int count) {
     }
 
     system("pause");
+    system("cls");
 }
