@@ -69,7 +69,9 @@ void add() {
     ofstream outFile("inputfile.txt", ios::app);
     if (outFile.is_open())
     {
-        outFile << "Item ID: " << id << " | Model: " << model << " | Category: " << category << " | Price : RM " << price << " | Quantity: " << qty << endl;
+        outFile << id << " " << model << " " << category << " "
+            << fixed << setprecision(2) << price << " " << qty << "\n";
+        outFile.close();
     }
 }
 
@@ -101,8 +103,10 @@ void displayLaptop() {
     cout << "------------------------------\n";
     bool found = false;
     for (int i = 0; i < itemCount; i++) {
-        if (inventoryList[i].category == "LAPTOP" || inventoryList[i].category == "Laptop") {
-            cout << " Model : " << inventoryList[i].ModelItem << " | Quantity : " << inventoryList[i].quantity << endl;
+        if (toUpper(inventoryList[i].category) == "PHONE") {
+            cout << " Model : " << inventoryList[i].ModelItem
+                << " | Price : RM " << fixed << setprecision(2) << inventoryList[i].price
+                << " | Quantity : " << inventoryList[i].quantity << endl;
             found = true;
         }
     }
@@ -121,8 +125,10 @@ void displayTV() {
     cout << "-----------------------------------\n";
     bool found = false;
     for (int i = 0; i < itemCount; i++) {
-        if (inventoryList[i].category == "TV" || inventoryList[i].category == "tv") {
-            cout << " Model : " << inventoryList[i].ModelItem << " | Quantity : " << inventoryList[i].quantity << endl;
+        if (toUpper(inventoryList[i].category) == "PHONE") {
+            cout << " Model : " << inventoryList[i].ModelItem
+                << " | Price : RM " << fixed << setprecision(2) << inventoryList[i].price
+                << " | Quantity : " << inventoryList[i].quantity << endl;
             found = true;
         }
     }
@@ -140,8 +146,10 @@ void displayScooter() {
     cout << "-----------------------------------\n";
     bool found = false;
     for (int i = 0; i < itemCount; i++) {
-        if (inventoryList[i].category == "SCOOTER" || inventoryList[i].category == "Scooter") {
-            cout << " Model : " << inventoryList[i].ModelItem << " | Quantity : " << inventoryList[i].quantity << endl;
+        if (toUpper(inventoryList[i].category) == "PHONE") {
+            cout << " Model : " << inventoryList[i].ModelItem
+                << " | Price : RM " << fixed << setprecision(2) << inventoryList[i].price
+                << " | Quantity : " << inventoryList[i].quantity << endl;
             found = true;
         }
     }
@@ -159,8 +167,10 @@ void displayCooker() {
     cout << "-----------------------------------\n";
     bool found = false;
     for (int i = 0; i < itemCount; i++) {
-        if (inventoryList[i].category == "COOKER" || inventoryList[i].category == "Cooker") {
-            cout << " Model : " << inventoryList[i].ModelItem << " | Quantity : " << inventoryList[i].quantity << endl;
+        if (toUpper(inventoryList[i].category) == "PHONE") {
+            cout << " Model : " << inventoryList[i].ModelItem
+                << " | Price : RM " << fixed << setprecision(2) << inventoryList[i].price
+                << " | Quantity : " << inventoryList[i].quantity << endl;
             found = true;
         }
     }
@@ -215,11 +225,9 @@ void extraFunction() {
 
 // BY AQILAH 
 int main() { // SUPPOSEDLY THIS SHOULD BE MAIN.CPP START FROM HERE
-    //File.txt by anis & ulah
-    ifstream inFile;
-    inFile.open("inputfile.txt");
+    ifstream inFile("inputfile.txt");
 
-    if (!inFile) {
+    if (!inFile.is_open()) {
         cout << "Error: Cannot open input file!\n";
         return 1;
     }
@@ -228,6 +236,7 @@ int main() { // SUPPOSEDLY THIS SHOULD BE MAIN.CPP START FROM HERE
     float price;
     int qty;
 
+    // Operator >> automatik skip spaces dan baca ikut turutan
     while (inFile >> id >> model >> category >> price >> qty) {
         if (itemCount < 100) {
             inventoryList[itemCount] = InventoryItem(id, model, category, price, qty);
