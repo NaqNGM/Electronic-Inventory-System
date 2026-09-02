@@ -57,4 +57,5 @@ void searchItem(InventoryItem arr[], int count) {
     }
 
     system("pause");
+    system("cls");
 }
