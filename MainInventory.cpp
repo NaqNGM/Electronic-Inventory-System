@@ -94,7 +94,6 @@ void displayPhone() {
     }
     cout << "-----------------------------------\n";
     system("pause");
-    system("cls");
 }
 
 void displayLaptop() {
@@ -115,7 +114,6 @@ void displayLaptop() {
     }
     cout << "-----------------------------------\n";
     system("pause");
-    system("cls");
 }
 
 
@@ -137,7 +135,6 @@ void displayTV() {
     }
     cout << "-----------------------------------\n";
     system("pause");
-    system("cls");
 }
 
 void displayScooter() {
@@ -158,7 +155,6 @@ void displayScooter() {
     }
     cout << "-----------------------------------\n";
     system("pause");
-    system("cls");
 }
 
 void displayCooker() {
@@ -179,7 +175,6 @@ void displayCooker() {
     }
     cout << "-----------------------------------\n";
     system("pause");
-    system("cls");
 }
 
 //category untuk switch case 
@@ -197,6 +192,8 @@ void CategoryMenu() {
     cout << "-----------------------------------\n";
     cout << "Enter your choice: ";
     cin >> categoryChoice;
+
+    system("cls");
 
     switch (categoryChoice) {
     case 1:
@@ -271,7 +268,7 @@ int main() { // SUPPOSEDLY THIS SHOULD BE MAIN.CPP START FROM HERE
             sortItem(inventoryList, itemCount);
             break;
         case 4:
-            searchItem(inventoryList, itemCount);
+            SearchingChoices(inventoryList, inventoryList, itemCount);
             break;
         case 5:
             extraFunction();
