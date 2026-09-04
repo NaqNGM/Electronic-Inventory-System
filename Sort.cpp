@@ -149,36 +149,57 @@ void sortItem(InventoryItem arr[], int count) {
     if (count == 0) {
         cout << "Inventory is empty. Nothing to sort.\n";
         system("pause");
+        system("cls");
         return;
     }
 
     int sortChoice;
-    cout << "\n-----------------------------------\n";
-    cout << "           SORTING MENU            \n";
-    cout << "-----------------------------------\n";
-    cout << "1. Sort by Price (Ascending)\n";
-    cout << "2. Sort by Item ID (Alphabetical)\n";
-    cout << "3. Sort by Model Name (Alphabetical)\n";
-    cout << "Enter your choice: ";
-    cin >> sortChoice;
 
-    if (sortChoice == 1) {
-        quickSortPrice(arr, 0, count - 1);
-        cout << "\nItems successfully sorted by Price (Ascending)\n";
-    }
-    else if (sortChoice == 2) {
-        quickSortId(arr, 0, count - 1);
-        cout << "\nItems successfully sorted by Item ID (Alphabetical)\n";
-    }
-    else if (sortChoice == 3) {
-        quickSortModel(arr, 0, count - 1);
-        cout << "\nItems successfully sorted by Model Name (Alphabetical)\n";
-    }
-    else {
-        cout << "Invalid choice.\n";
-        system("pause");
-        return;
-    }
+    do {
+        system("cls");
+        cout << "\n-----------------------------------\n";
+        cout << "           SORTING MENU            \n";
+        cout << "-----------------------------------\n";
+        cout << "1. Sort by Price (Ascending)\n";
+        cout << "2. Sort by Item ID (Alphabetical)\n";
+        cout << "3. Sort by Model Name (Alphabetical)\n";
+        cout << "0. Back to Main Menu\n";
+        cout << "Enter your choice: ";
+        cin >> sortChoice;
+
+        // if user masukkan selain nombor
+        if (cin.fail()) {
+            cin.clear(); // clear error
+            cin.ignore(1000, '\n'); // clear invalid input
+            cout << "\nInvalid input! Please enter a number.\n\n";
+            system("pause");
+            continue;
+        }
+
+        if (sortChoice == 1) {
+            quickSortPrice(arr, 0, count - 1);
+            cout << "\nItems successfully sorted by Price (Ascending)\n";
+            break;
+        }
+        else if (sortChoice == 2) {
+            quickSortId(arr, 0, count - 1);
+            cout << "\nItems successfully sorted by Item ID (Alphabetical)\n";
+            break;
+        }
+        else if (sortChoice == 3) {
+            quickSortModel(arr, 0, count - 1);
+            cout << "\nItems successfully sorted by Model Name (Alphabetical)\n";
+            break;
+        }
+        else if (sortChoice == 0) {
+            system("cls");
+            return;
+        }
+        else {
+            cout << "\nInvalid choice. Please try again.\n\n";
+            system("pause");
+        }
+    } while (true);
 
     cout << "-----------------------------------\n";
 
