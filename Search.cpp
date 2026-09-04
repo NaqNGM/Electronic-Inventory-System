@@ -10,7 +10,6 @@ int binarySearchById(InventoryItem arr[], int count, const string& targetId) {
     int high = count - 1;
 
     while (low <= high) {
-        // Prevents potential overflow compared to (low + high) / 2
         int mid = low + (high - low) / 2;
 
         if (arr[mid].itemId == targetId) {
@@ -41,10 +40,9 @@ void searchItem(InventoryItem arr[], int count) {
     cout << "Enter Item ID to search: ";
     cin >> targetId;
 
-    // Prerequisite: Array MUST be sorted by itemId for binary search
-    // If using Alia's specific function:
+    //Array MUST be sorted by itemId for binary search
     quickSortId(arr, 0, count - 1);
-    // (Or if using the unified function: quickSort(arr, 0, count - 1, 2);)
+
 
     int index = binarySearchById(arr, count, targetId);
 
@@ -58,4 +56,113 @@ void searchItem(InventoryItem arr[], int count) {
 
     system("pause");
     system("cls");
+}
+
+int ProbabilitySearchByModel(InventoryItem array[], int count, const string& TargetModel)
+{
+    int index = 0;
+    InventoryItem temp;
+
+    while (index < count)
+    {
+        if (array[index].ModelItem != TargetModel)
+        {
+            index++;
+        }
+        else
+        {
+            if (index != 0)
+            {
+                temp = array[index - 1];
+                array[index - 1] = array[index];
+                array[index] = temp;
+
+                return index - 1;
+            }
+            return index;
+        }
+    }
+    return -1;
+}
+
+void ProbabilityItem(InventoryItem array[], int count)
+{
+    if (count == 0)
+    {
+        cout << "Inventory is empty. Nothing to search.\n";
+        system("pause");
+        return;
+    }
+
+    string TargetModel;
+
+    cout << "\n-----------------------------------\n";
+    cout << "        SEARCH ITEM BY MODEL          \n";
+    cout << "-----------------------------------\n";
+    cout << "Enter Item Model to search: ";
+    cin.ignore();
+    getline(cin, TargetModel);
+
+    int index = ProbabilitySearchByModel(array, count, TargetModel);
+
+    cout << "\nSearch Result:\n";
+    if (index != -1) {
+        array[index].displayItem();
+    }
+    else {
+        cout << "Item with Model '" << TargetModel << "' was not found.\n";
+    }
+
+    system("pause");
+    system("cls");
+}
+
+void SearchingChoices(InventoryItem arr[], InventoryItem array[], int count)
+{
+    int searchingChoice;
+
+    do
+    {
+        cout << "\n-----------------------------------\n";
+        cout << "           SEARCHING MENU            \n";
+        cout << "-----------------------------------\n";
+        cout << "1. Searching by Item ID\n";
+        cout << "2. Searching by Model Name\n";
+        cout << "0. BACK TO MAIN MENU\n";
+        cout << "\nEnter your choice: ";
+        cin >> searchingChoice;
+
+        if (cin.fail()) {
+            cin.clear(); // clear error
+            cin.ignore(1000, '\n'); // clear invalid input
+            cout << "\nInvalid input! Please enter a number.\n\n";
+            system("pause");
+            system("cls");
+            continue;
+        }
+
+        if (searchingChoice == 1)
+        {
+            searchItem(arr, count);
+            break;
+        }
+        else if (searchingChoice == 2)
+        {
+            ProbabilityItem(array, count);
+            break;
+        }
+        else if (searchingChoice == 0)
+        {
+            system("cls");
+            return;
+        }
+        else
+        {
+            cout << "\nInvalid choice.\n\n";
+            system("pause");
+            system("cls");
+        }
+
+    } while (true);
+
 }
