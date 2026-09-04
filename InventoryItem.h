@@ -46,5 +46,5 @@ public:
         cout << "----------------------------------------\n";
     }
 };
-
+std::string toUpper(std::string str);
 #endif
