@@ -163,7 +163,7 @@ void sortItem(InventoryItem arr[], int count) {
         cout << "1. Sort by Price (Ascending)\n";
         cout << "2. Sort by Item ID (Alphabetical)\n";
         cout << "3. Sort by Model Name (Alphabetical)\n";
-        cout << "0. Back to Main Menu\n";
+        cout << "4. Back to Main Menu\n";
         cout << "Enter your choice: ";
         cin >> sortChoice;
 
@@ -191,7 +191,7 @@ void sortItem(InventoryItem arr[], int count) {
             cout << "\nItems successfully sorted by Model Name (Alphabetical)\n";
             break;
         }
-        else if (sortChoice == 0) {
+        else if (sortChoice == 4) {
             system("cls");
             return;
         }
